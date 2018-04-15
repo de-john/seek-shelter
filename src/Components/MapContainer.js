@@ -29,19 +29,21 @@ export class MapContainer extends React.Component {
               const pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-              };
+              }
   
-            //   InfoWindow.setPosition(pos);
-            //   InfoWindow.setContent('Location found.');
-            //   InfoWindow.open(Map);
-            //   Map.setCenter(pos);
+              InfoWindow.setPosition(pos);
+              InfoWindow.setContent('Location found.');
+              InfoWindow.open(Map);
+              Map.setCenter(pos);
             }, function() {
-              handleLocationError(true, InfoWindow, Map.getCenter());
+            //   handleLocationError(true, InfoWindow, Map.getCenter());
             });
-          } else {
+          } 
+          else {
             // Browser doesn't support Geolocation
-            handleLocationError(false, InfoWindow, Map.getCenter());
-          }
+            // handleLocationError(false, InfoWindow, Map.getCenter());
+            }
+        
         }
     
     
@@ -74,7 +76,7 @@ export class MapContainer extends React.Component {
     return (
         <div>
             <h2>Disaster Shelters Near you</h2>
-            <LocationSearch />
+            
             <Map style={style}
                 google={this.props.google} 
                 zoom={11}
@@ -85,7 +87,7 @@ export class MapContainer extends React.Component {
                     lng: -73.935242
                   }}
                   clickableIcons={true}>
-                  <SimpleForm />
+                  
                 <Marker
                     title={'The marker`s title will appear as a tooltip.'}
                     name={
