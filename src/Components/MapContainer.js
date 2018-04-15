@@ -2,7 +2,6 @@ import React from 'react';
 import '../css/style.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper, handleLocationError} from 'google-maps-react';
 import {getGeoLocation, getLocation} from '../geolocation';
-import LocationSearch from './LocationSearch';
 import SimpleForm from './Places';
 import {geolocated} from 'react-geolocated';
 
@@ -31,10 +30,10 @@ export class MapContainer extends React.Component {
                 lng: position.coords.longitude
               }
   
-              InfoWindow.setPosition(pos);
-              InfoWindow.setContent('Location found.');
-              InfoWindow.open(Map);
-              Map.setCenter(pos);
+            //   InfoWindow.setPosition(pos);
+            //   InfoWindow.setContent('Location found.');
+            //   InfoWindow.open(Map);
+            //   Map.setCenter(pos);
             }, function() {
             //   handleLocationError(true, InfoWindow, Map.getCenter());
             });
