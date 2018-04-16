@@ -1,6 +1,4 @@
-// import 'bootstrap/dist/css/boo';
 import './css/style.css';
-// import "./bootstrap-overrides.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/Capacity.css';
 import React from 'react'

@@ -1,7 +1,10 @@
 @charset "UTF-8";
 /* Body */
+/* html, head {
+	font-family: source-sans-pro !important;
+} */
 body {
-	font-family: source-sans-pro;
+	font-family:  Tahoma, Geneva, Verdana, sans-serif !important;
 	background-color: #f2f2f2;
 	margin-top: 0px;
 	margin-right: 0px;
@@ -9,11 +12,21 @@ body {
 	margin-left: 0px;
 	font-style: normal;
 	font-weight: 200;
+	Color: #f2f2f2 ;
 }
 
 .link-none {
 	text-decoration: none !important;
+	color: #f2f2f2;
 }
+.link-about {
+	text-decoration: none !important;
+	color: #f2f2f2;
+}
+.navLink:hover, .link-about:hover, .link-none:hover{
+	color:  #663300 !important ;
+}
+
 .fix {
 	min-width: 100%;
 	margin: auto;
@@ -22,6 +35,8 @@ body {
 
 #MapContainer {
 	max-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
 .defaultContainer {
 	width: 90%;
@@ -35,7 +50,6 @@ body {
 	width: 100% !important; 
 	height: 6% !important;
 	background-color: #FF6600 !important;
-	border-bottom: 1px solid  #FFD800 !important;
 	margin: auto !important;
 }
 .logo {
@@ -73,7 +87,7 @@ ul li a, .navLink {
 	text-decoration: none;
 }
 ul li:hover a ,navLink:hover{
-	color:  #663300;
+	color:  #663300 !important ;
 }
 .shelter_header {
 	color: #FFFFFF;

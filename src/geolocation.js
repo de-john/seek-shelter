@@ -3,6 +3,31 @@
  * 
  * contains functions for geocoding and geolocation
 */
+export function geoLocate() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+                    LatLng: {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    },
+                    zoom: {
+                        zoom: 13
+                    }
+                });
+        })
+    } else {
+        this.setState({
+                LatLng: {
+                    lat: 49.8527,
+                    lng: -123.1207
+                },
+                zoom: {
+                    zoom: 11
+                }
+            });
+    }
+}
 export function getLocation() {
     let myLatLng = {
         lat: 40.730610,

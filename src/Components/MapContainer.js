@@ -1,50 +1,57 @@
 import React from 'react';
 import '../css/style.css';
 import {Map, InfoWindow, Marker, GoogleApiWrapper, handleLocationError} from 'google-maps-react';
-import {getGeoLocation, getLocation} from '../geolocation';
+// import {getGeoLocation, geoLocate} from '../geolocation';
 import SimpleForm from './Places';
-import {geolocated} from 'react-geolocated';
+import { geolocated } from 'react-geolocated';
 
 export class MapContainer extends React.Component {
-    state = {
-        activeMarker: {},
-        selectedPlace: {},
-        showingInfoWindow: false,
-        viewport: {
-            latitude: 40.7128,
-            longitude: -74.0060,
-            zoom: 7
-        },
-        myLatLng: {
-            lat: 40.7128,
-            lng: -74.0060,
-      }
-    }
-    
-    
-      componentDidMount() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-              const pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-              }
-  
-            //   InfoWindow.setPosition(pos);
-            //   InfoWindow.setContent('Location found.');
-            //   InfoWindow.open(Map);
-            //   Map.setCenter(pos);
-            }, function() {
-            //   handleLocationError(true, InfoWindow, Map.getCenter());
-            });
-          } 
-          else {
-            // Browser doesn't support Geolocation
-            // handleLocationError(false, InfoWindow, Map.getCenter());
-            }
-        
+    constructor(props) {
+        super(props)
+        this.state = {
+            LatLng: {
+                lat: 49.2827,
+                lng: -123.1207
+            },
+            zoom: {
+                zoom: 11
+            },
+            activeMarker: {},
+            selectedPlace: {},
+            showingInfoWindow: false,
         }
+      }
+   
+    componentDidMount() {
+        this.geoLocate()  
+    }
+     
     
+    geoLocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.setState({
+                        LatLng: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        },
+                        zoom: {
+                            zoom: 13
+                        }
+                    });
+            })
+        } else {
+            this.setState({
+                    LatLng: {
+                        lat: 49.8527,
+                        lng: -123.1207
+                    },
+                    zoom: {
+                        zoom: 11
+                    }
+                });
+        }
+    }
     
       onMarkerClick = (props, marker) =>
         this.setState({
@@ -66,6 +73,8 @@ export class MapContainer extends React.Component {
             showingInfoWindow: false
           });
       };
+
+      
           
   render() {
     const style = {
@@ -73,18 +82,20 @@ export class MapContainer extends React.Component {
         height: '85vh'
       }
     return (
-        <div>
-            <h2>Disaster Shelters Near you</h2>
+        <div className="Map">
+            <h1> Disaster Shelter Locations </h1>
             
             <Map style={style}
                 google={this.props.google} 
-                zoom={11}
+                zoom={this.state.zoom.zoom}
                 initialCenter={{
-                    // lat: this.props.pos.lat,
-                    // lng: this.props.pos.lng
                     lat: 40.730610,
                     lng: -73.935242
                   }}
+                center={{
+                    lat: this.state.LatLng.lat,
+                    lng: this.state.LatLng.lng
+                }}
                   clickableIcons={true}>
                   
                 <Marker
@@ -1545,7 +1556,8 @@ export class MapContainer extends React.Component {
                     name = {
                         <div>
                             <strong>PS 56</strong><br/>
-                            250 Kramer Avenue<br/> Staten Island, NY 10309<br/>
+                            250 Kramer Avenue<br/> 
+                            Staten Island, NY 10309<br/>
                             <a href="https://goo.gl/maps/ydfT3phcxB82" target="_blank">Get Directions</a>
                         </div>
                     }
@@ -1563,7 +1575,7 @@ export class MapContainer extends React.Component {
                             {this.state.selectedPlace.name}
                         </div>
                     </InfoWindow>
-            </Map>
+            </Map>  
         </div>
     );
   }
